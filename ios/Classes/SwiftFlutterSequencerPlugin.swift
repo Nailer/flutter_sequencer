@@ -20,7 +20,7 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         plugin.registrar = registrar
         registrar.addMethodCallDelegate(plugin, channel: channel)
     }
-    
+
     public override init() {
         super.init()
 
@@ -43,7 +43,16 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         } else if (call.method == "addTrackAudioUnit") {
             let audioUnitId = (call.arguments as AnyObject)["id"] as! String
             addTrackAudioUnit(audioUnitId) { result($0) }
+        } else if (call.method == "nevereverever") {
+            dummyMethodToEnforceBundling();
         }
+    }
+
+    public func dummyMethodToEnforceBundling() {
+        // dummy calls to prevent tree shaking
+        setup_engine(1);
+        destroy_engine();
+        add_track_sampler(1);
     }
 }
 
@@ -63,7 +72,6 @@ func listAudioUnits(completion: @escaping ([String]) -> Void) {
         completion(ids)
     }
 }
-
 
 @_cdecl("setup_engine")
 func setupEngine(sampleRateCallbackPort: Dart_Port) {
