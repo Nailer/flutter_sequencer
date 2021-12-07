@@ -49,12 +49,25 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         //}
     }
 
-    // public func dummyMethodToEnforceBundling() {
-    //     // dummy calls to prevent tree shaking
-    //     setup_engine(1);
-    //     destroy_engine();
-    //     add_track_sampler(1);
-    // }
+    public static func dummyMethodToEnforceBundling() {
+        // dummy calls to prevent tree shaking
+        setup_engine(1);
+        destroy_engine();
+        add_track_sfz("","",1);
+        add_track_sfz_string("","",1);
+        add_track_sf2("",true,1,1);
+        remove_track(1);
+        reset_track(1);
+        let position = get_position();
+        let trackVolume = get_track_volume(1);
+        let lastRenderTime = get_last_render_time_us();
+        let bufferAvailableCount = get_buffer_available_count(1);
+        handle_events_now(1,0,1);
+        let scheduledEvents = schedule_events(1,0,1);
+        clear_events(1,0);
+        engine_play();
+        engine_pause();
+    }
 }
 
 // Called from method channel
