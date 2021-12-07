@@ -49,12 +49,12 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         //}
     }
 
-    public func dummyMethodToEnforceBundling() {
-        // dummy calls to prevent tree shaking
-        setup_engine(1);
-        destroy_engine();
-        add_track_sampler(1);
-    }
+    // public func dummyMethodToEnforceBundling() {
+    //     // dummy calls to prevent tree shaking
+    //     setup_engine(1);
+    //     destroy_engine();
+    //     add_track_sampler(1);
+    // }
 }
 
 // Called from method channel
