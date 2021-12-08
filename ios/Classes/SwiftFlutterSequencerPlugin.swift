@@ -67,12 +67,12 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             get_buffer_available_count(1);
         }
 
-        let count : Int = 3;
-        let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: count)
-        pointer.initialize(repeating: 0, count: count)
-
-        handle_events_now(1,pointer,1);
-        schedule_events(1,pointer,1);
+        //let count : Int = 3;
+        //let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: count)
+        //pointer.initialize(repeating: 0, count: count);
+        let data : [UInt8] = [1,2,3];
+        handle_events_now(1,&data,1);
+        schedule_events(1,&data,1);
         clear_events(1,0);
         engine_play();
         engine_pause();
