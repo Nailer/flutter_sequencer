@@ -53,7 +53,7 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         // dummy calls to prevent tree shaking
         //let str = ""
         //let emptyStr = UnsafeMutablePointer<CChar>(mutating: str.utf8String);
-        var emptyStr: CString = "";
+        var emptyStr: String = "";
         setup_engine(1);
         destroy_engine();
         add_track_sfz(emtpyStr,emtpyStr,1);
