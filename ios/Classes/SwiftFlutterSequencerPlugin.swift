@@ -70,8 +70,8 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             //handle_events_now(1,&uint8ArrayVar,1);
             //schedule_events(1,&uint8ArrayVar,1);
             //clear_events(1,0);
-            engine_play();
-            engine_pause();
+            //engine_play();
+            //engine_pause();
         }
     }
 }
