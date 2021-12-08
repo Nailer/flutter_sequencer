@@ -51,16 +51,9 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
 
     public static func dummyMethodToEnforceBundling() {
         // dummy calls to prevent tree shaking
-        //let str = ""
-        //let emptyStr = UnsafeMutablePointer<CChar>(mutating: str.utf8String);
         let str: String = "";
-        
-        //let cs = str.
-        //var buffer = UnsafeMutablePointer<UInt8>(mutating: str);
-
-        //var emtpyStr = UnsafeMutablePointer<CChar>(str);
         str.withCString {
-            var emtpyStr = UnsafeMutablePointer(mutating: $0);
+            let emtpyStr = UnsafeMutablePointer(mutating: $0);
             setup_engine(1);
             destroy_engine();
             add_track_sfz(emtpyStr,emtpyStr,1);
@@ -68,27 +61,25 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             add_track_sf2(emtpyStr,true,1,1);
             remove_track(1);
             reset_track(1);
-            // let position = get_position();
-            // let trackVolume = get_track_volume(1);
-            // let lastRenderTime = get_last_render_time_us();
-            // let bufferAvailableCount = get_buffer_available_count(1);
             get_position();
             get_track_volume(1);
             get_last_render_time_us();
             get_buffer_available_count(1);
         }
 
-        var encodedStringData = Data(base64Encoded: "Vmlub2QgaXMgZ3JlYXQh")!;
+        //var encodedStringData = Data(base64Encoded: "Vmlub2QgaXMgZ3JlYXQh")!;
     
         // byte pointer variable used later to decode the base64 encoded Data
-        let rawPtr: UnsafeMutablePointer<UInt8> = encodedStringData.withUnsafeMutableBytes { (bytePtr: UnsafeMutablePointer<UInt8>) in bytePtr }
+        //let rawPtr: UnsafeMutablePointer<UInt8> = encodedStringData.withUnsafeMutableBytes { (bytePtr: UnsafeMutablePointer<UInt8>) in bytePtr }
 
-        handle_events_now(1,rawPtr,1);
-        //let scheduledEvents = schedule_events(1,rawPtr,1);
-        schedule_events(1,rawPtr,1);
-        clear_events(1,0);
-        engine_play();
-        engine_pause();
+        var encodedStringData = Data(base64Encoded: "Vmlub2QgaXMgZ3JlYXQh")!;
+        encodedStringData.withUnsafeMutableBytes {(bytes: UnsafeMutablePointer<UInt8>)->Void in
+            handle_events_now(1,bytes,1);
+            schedule_events(1,bytes,1);
+            clear_events(1,0);
+            engine_play();
+            engine_pause();
+        }
     }
 }
 
