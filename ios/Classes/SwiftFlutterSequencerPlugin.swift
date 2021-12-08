@@ -66,9 +66,13 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             get_last_render_time_us();
             get_buffer_available_count(1);
         }
-        let uint8ArrayVar : [UInt8] = [0,3,4,5];
-        handle_events_now(1,uint8ArrayVar.map { UInt8(bitPattern: $0) },1);
-        schedule_events(1,uint8ArrayVar.map { UInt8(bitPattern: $0) },1);
+
+        let count : int = 3;
+        let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: count)
+        pointer.initialize(repeating: 0, count: count)
+
+        handle_events_now(1,pointer,1);
+        schedule_events(1,pointer,1);
         clear_events(1,0);
         engine_play();
         engine_pause();
