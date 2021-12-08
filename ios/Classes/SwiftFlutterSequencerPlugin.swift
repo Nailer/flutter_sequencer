@@ -93,16 +93,19 @@ func listAudioUnits(completion: @escaping ([String]) -> Void) {
     }
 }
 
+@inline(never)
 @_cdecl("setup_engine")
 func setupEngine(sampleRateCallbackPort: Dart_Port) {
     plugin.engine = CocoaEngine(sampleRateCallbackPort: sampleRateCallbackPort, registrar: plugin.registrar)
 }
 
+@inline(never)
 @_cdecl("destroy_engine")
 func destroyEngine() {
     plugin.engine = nil
 }
 
+@inline(never)
 @_cdecl("add_track_sfz")
 func addTrackSfz(sfzPath: UnsafePointer<CChar>, tuningPath: UnsafePointer<CChar>, callbackPort: Dart_Port) {
     plugin.engine!.addTrackSfz(sfzPath: sfzPath, tuningPath: tuningPath) { trackIndex in
@@ -110,6 +113,7 @@ func addTrackSfz(sfzPath: UnsafePointer<CChar>, tuningPath: UnsafePointer<CChar>
     }
 }
 
+@inline(never)
 @_cdecl("add_track_sfz_string")
 func addTrackSfzString(sampleRoot: UnsafePointer<CChar>, sfzString: UnsafePointer<CChar>, tuningString: UnsafePointer<CChar>, callbackPort: Dart_Port) {
     plugin.engine!.addTrackSfzString(sampleRoot: sampleRoot, sfzString: sfzString, tuningString: tuningString) { trackIndex in
@@ -117,6 +121,7 @@ func addTrackSfzString(sampleRoot: UnsafePointer<CChar>, sfzString: UnsafePointe
     }
 }
 
+@inline(never)
 @_cdecl("add_track_sf2")
 func addTrackSf2(path: UnsafePointer<CChar>, isAsset: Bool, presetIndex: Int32, callbackPort: Dart_Port) {
     plugin.engine!.addTrackSf2(sf2Path: String(cString: path), isAsset: isAsset, presetIndex: presetIndex) { trackIndex in
@@ -129,36 +134,43 @@ func addTrackAudioUnit(_ audioUnitId: String, completion: @escaping (track_index
     plugin.engine!.addTrackAudioUnit(audioUnitId: audioUnitId, completion: completion)
 }
 
+@inline(never)
 @_cdecl("remove_track")
 func removeTrack(trackIndex: track_index_t) {
     let _ = plugin.engine!.removeTrack(trackIndex: trackIndex)
 }
 
+@inline(never)
 @_cdecl("reset_track")
 func resetTrack(trackIndex: track_index_t) {
     SchedulerResetTrack(plugin.engine!.scheduler, trackIndex)
 }
 
+@inline(never)
 @_cdecl("get_position")
 func getPosition() -> position_frame_t {
     return SchedulerGetPosition(plugin.engine!.scheduler)
 }
 
+@inline(never)
 @_cdecl("get_track_volume")
 func getTrackVolume(trackIndex: track_index_t) -> Float32 {
     return SchedulerGetTrackVolume(plugin.engine!.scheduler, trackIndex)
 }
 
+@inline(never)
 @_cdecl("get_last_render_time_us")
 func getLastRenderTimeUs() -> UInt64 {
     return SchedulerGetLastRenderTimeUs(plugin.engine!.scheduler)
 }
 
+@inline(never)
 @_cdecl("get_buffer_available_count")
 func getBufferAvailableCount(trackIndex: track_index_t) -> UInt32 {
     return SchedulerGetBufferAvailableCount(plugin.engine!.scheduler, trackIndex)
 }
 
+@inline(never)
 @_cdecl("handle_events_now")
 func handleEventsNow(trackIndex: track_index_t, eventData: UnsafePointer<UInt8>, eventsCount: UInt32) {
     let events = UnsafeMutablePointer<SchedulerEvent>.allocate(capacity: Int(eventsCount))
@@ -177,16 +189,19 @@ func scheduleEvents(trackIndex: track_index_t, eventData: UnsafePointer<UInt8>, 
     return SchedulerAddEvents(plugin.engine!.scheduler, trackIndex, UnsafePointer(events), eventsCount)
 }
 
+@inline(never)
 @_cdecl("clear_events")
 func clearEvents(trackIndex: track_index_t, fromFrame: position_frame_t) {
     SchedulerClearEvents(plugin.engine!.scheduler, trackIndex, fromFrame)
 }
 
+@inline(never)
 @_cdecl("engine_play")
 func enginePlay() {
     plugin.engine!.play()
 }
 
+@inline(never)
 @_cdecl("engine_pause")
 func enginePause() {
     plugin.engine!.pause()
