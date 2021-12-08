@@ -66,20 +66,12 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             get_last_render_time_us();
             get_buffer_available_count(1);
         }
-
-        //var encodedStringData = Data(base64Encoded: "Vmlub2QgaXMgZ3JlYXQh")!;
-    
-        // byte pointer variable used later to decode the base64 encoded Data
-        //let rawPtr: UnsafeMutablePointer<UInt8> = encodedStringData.withUnsafeMutableBytes { (bytePtr: UnsafeMutablePointer<UInt8>) in bytePtr }
-
-        var encodedStringData = Data(base64Encoded: "Vmlub2QgaXMgZ3JlYXQh")!;
-        encodedStringData.withUnsafeMutableBytes {(bytes: UnsafeMutablePointer<UInt8>)->Void in
-            handle_events_now(1,bytes,1);
-            schedule_events(1,bytes,1);
-            clear_events(1,0);
-            engine_play();
-            engine_pause();
-        }
+        let ptr: UnsafeMutablePointer<UInt8> = nil;
+        handle_events_now(1,ptr,1);
+        schedule_events(1,ptr,1);
+        clear_events(1,0);
+        engine_play();
+        engine_pause();
     }
 }
 
