@@ -70,7 +70,7 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         //var uint8ArrayVar: [UInt8] = [0,3,4,5];
         //handle_events_now(1,&uint8ArrayVar,1);
         //schedule_events(1,&uint8ArrayVar,1);
-        clear_events(1,0);
+        //clear_events(1,0);
         engine_play();
         engine_pause();
     }
