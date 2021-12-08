@@ -54,9 +54,14 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         //let str = ""
         //let emptyStr = UnsafeMutablePointer<CChar>(mutating: str.utf8String);
         let str: String = "";
+        let eventData:
         //var emtpyStr = UnsafeMutablePointer<CChar>(str);
         str.withCString {
             var emtpyStr = UnsafeMutablePointer(mutating: $0);
+
+            let cs = (str as NSString).UTF8String;
+            var buffer = UnsafeMutablePointer<Int8>(cs);
+
             setup_engine(1);
             destroy_engine();
             add_track_sfz(emtpyStr,emtpyStr,1);
@@ -68,8 +73,9 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             let trackVolume = get_track_volume(1);
             let lastRenderTime = get_last_render_time_us();
             let bufferAvailableCount = get_buffer_available_count(1);
-            handle_events_now(1,0,1);
-            let scheduledEvents = schedule_events(1,0,1);
+
+            handle_events_now(1,buffer,1);
+            let scheduledEvents = schedule_events(1,buffer,1);
             clear_events(1,0);
             engine_play();
             engine_pause();
