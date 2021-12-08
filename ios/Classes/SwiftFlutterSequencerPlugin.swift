@@ -53,23 +53,27 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         // dummy calls to prevent tree shaking
         //let str = ""
         //let emptyStr = UnsafeMutablePointer<CChar>(mutating: str.utf8String);
-        let emptyStr: String = "";
-        setup_engine(1);
-        destroy_engine();
-        add_track_sfz("","",1);
-        add_track_sfz_string(emtpyStr,emtpyStr,1);
-        add_track_sf2(emtpyStr,true,1,1);
-        remove_track(1);
-        reset_track(1);
-        let position = get_position();
-        let trackVolume = get_track_volume(1);
-        let lastRenderTime = get_last_render_time_us();
-        let bufferAvailableCount = get_buffer_available_count(1);
-        handle_events_now(1,0,1);
-        let scheduledEvents = schedule_events(1,0,1);
-        clear_events(1,0);
-        engine_play();
-        engine_pause();
+        let str: String = "";
+        //var emtpyStr = UnsafeMutablePointer<CChar>(str);
+        str.withCString {
+            var emtpyStr = UnsafeMutablePointer(mutating: $0);
+            setup_engine(1);
+            destroy_engine();
+            add_track_sfz(emtpyStr,emtpyStr,1);
+            add_track_sfz_string(emtpyStr,emtpyStr,1);
+            add_track_sf2(emtpyStr,true,1,1);
+            remove_track(1);
+            reset_track(1);
+            let position = get_position();
+            let trackVolume = get_track_volume(1);
+            let lastRenderTime = get_last_render_time_us();
+            let bufferAvailableCount = get_buffer_available_count(1);
+            handle_events_now(1,0,1);
+            let scheduledEvents = schedule_events(1,0,1);
+            clear_events(1,0);
+            engine_play();
+            engine_pause();
+        }
     }
 }
 
