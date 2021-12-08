@@ -56,7 +56,7 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         let str: String = "";
         
         //let cs = str.
-        var buffer = UnsafeMutablePointer<Int8>(mutating: str);
+        var buffer = UnsafeMutablePointer<UInt8>(mutating: str);
 
         //var emtpyStr = UnsafeMutablePointer<CChar>(str);
         str.withCString {
