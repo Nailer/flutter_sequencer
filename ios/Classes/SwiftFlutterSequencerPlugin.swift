@@ -65,14 +65,14 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             get_track_volume(1);
             get_last_render_time_us();
             get_buffer_available_count(1);
-        }
 
-        //var uint8ArrayVar: [UInt8] = [0,3,4,5];
-        //handle_events_now(1,&uint8ArrayVar,1);
-        //schedule_events(1,&uint8ArrayVar,1);
-        //clear_events(1,0);
-        engine_play();
-        engine_pause();
+            //var uint8ArrayVar: [UInt8] = [0,3,4,5];
+            //handle_events_now(1,&uint8ArrayVar,1);
+            //schedule_events(1,&uint8ArrayVar,1);
+            //clear_events(1,0);
+            engine_play();
+            engine_pause();
+        }
     }
 }
 
