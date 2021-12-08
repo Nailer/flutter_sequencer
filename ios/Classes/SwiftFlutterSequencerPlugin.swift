@@ -49,7 +49,7 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         //}
     }
 
-    public static func dummyMethodToEnforceBundling() {
+    public func dummyMethodToEnforceBundling() {
         // dummy calls to prevent tree shaking
         let str: String = "";
         str.withCString {
