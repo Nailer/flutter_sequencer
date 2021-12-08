@@ -51,8 +51,9 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
 
     public static func dummyMethodToEnforceBundling() {
         // dummy calls to prevent tree shaking
-        let str = ""
-        let emptyStr = UnsafeMutablePointer<CChar>(mutating: str.utf8String);
+        //let str = ""
+        //let emptyStr = UnsafeMutablePointer<CChar>(mutating: str.utf8String);
+        var emptyStr: CString = "";
         setup_engine(1);
         destroy_engine();
         add_track_sfz(emtpyStr,emtpyStr,1);
