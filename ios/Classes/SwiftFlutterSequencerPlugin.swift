@@ -67,7 +67,7 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             get_buffer_available_count(1);
         }
 
-        let count : int = 3;
+        let count : Int8 = 3;
         let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: count)
         pointer.initialize(repeating: 0, count: count)
 
