@@ -68,10 +68,14 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             add_track_sf2(emtpyStr,true,1,1);
             remove_track(1);
             reset_track(1);
-            let position = get_position();
-            let trackVolume = get_track_volume(1);
-            let lastRenderTime = get_last_render_time_us();
-            let bufferAvailableCount = get_buffer_available_count(1);
+            // let position = get_position();
+            // let trackVolume = get_track_volume(1);
+            // let lastRenderTime = get_last_render_time_us();
+            // let bufferAvailableCount = get_buffer_available_count(1);
+            get_position();
+            get_track_volume(1);
+            get_last_render_time_us();
+            get_buffer_available_count(1);
         }
 
         var encodedStringData = Data(base64Encoded: "Vmlub2QgaXMgZ3JlYXQh")!;
@@ -80,7 +84,8 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         let rawPtr: UnsafeMutablePointer<UInt8> = encodedStringData.withUnsafeMutableBytes { (bytePtr: UnsafeMutablePointer<UInt8>) in bytePtr }
 
         handle_events_now(1,rawPtr,1);
-        let scheduledEvents = schedule_events(1,rawPtr,1);
+        //let scheduledEvents = schedule_events(1,rawPtr,1);
+        schedule_events(1,rawPtr,1);
         clear_events(1,0);
         engine_play();
         engine_pause();
