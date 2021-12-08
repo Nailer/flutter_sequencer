@@ -56,7 +56,7 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
         let str: String = "";
         
         //let cs = str.
-        var buffer = UnsafeMutablePointer<UInt8>(mutating: str);
+        //var buffer = UnsafeMutablePointer<UInt8>(mutating: str);
 
         //var emtpyStr = UnsafeMutablePointer<CChar>(str);
         str.withCString {
@@ -74,8 +74,13 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
             let bufferAvailableCount = get_buffer_available_count(1);
         }
 
-        handle_events_now(1,buffer,1);
-        let scheduledEvents = schedule_events(1,buffer,1);
+        var encodedStringData = Data(base64Encoded: "Vmlub2QgaXMgZ3JlYXQh")!;
+    
+        // byte pointer variable used later to decode the base64 encoded Data
+        let rawPtr: UnsafeMutablePointer<UInt8> = encodedStringData.withUnsafeMutableBytes { (bytePtr: UnsafeMutablePointer<UInt8>) in bytePtr }
+
+        handle_events_now(1,rawPtr,1);
+        let scheduledEvents = schedule_events(1,rawPtr,1);
         clear_events(1,0);
         engine_play();
         engine_pause();
