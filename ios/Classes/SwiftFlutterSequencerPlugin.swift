@@ -51,28 +51,30 @@ public class SwiftFlutterSequencerPlugin: NSObject, FlutterPlugin {
 
     public func dummyMethodToEnforceBundling() {
         // dummy calls to prevent tree shaking
+        setup_engine(1);
+        destroy_engine();
+
         let str: String = "";
         str.withCString {
             let emtpyStr = UnsafeMutablePointer(mutating: $0);
-            setup_engine(1);
-            destroy_engine();
             add_track_sfz(emtpyStr,emtpyStr,1);
             add_track_sfz_string(emtpyStr,emtpyStr,1);
             add_track_sf2(emtpyStr,true,1,1);
-            remove_track(1);
-            reset_track(1);
-            get_position();
-            get_track_volume(1);
-            get_last_render_time_us();
-            get_buffer_available_count(1);
-
-            //var uint8ArrayVar: [UInt8] = [0,3,4,5];
-            //handle_events_now(1,&uint8ArrayVar,1);
-            //schedule_events(1,&uint8ArrayVar,1);
-            //clear_events(1,0);
-            //engine_play();
-            //engine_pause();
         }
+
+        remove_track(1);
+        reset_track(1);
+        get_position();
+        get_track_volume(1);
+        get_last_render_time_us();
+        get_buffer_available_count(1);
+
+        //var uint8ArrayVar: [UInt8] = [0,3,4,5];
+        //handle_events_now(1,&uint8ArrayVar,1);
+        //schedule_events(1,&uint8ArrayVar,1);
+        //clear_events(1,0);
+        //engine_play();
+        //engine_pause();
     }
 }
 
