@@ -18,7 +18,7 @@ AndroidEngine::AndroidEngine(Dart_Port sampleRateCallbackPort) {
             ->setFormat(oboe::AudioFormat::Float)
             ->setCallback(this)
             ->openManagedStream(mOutStream);
-
+    mOutStream->setBufferSizeInFrames(2048);
     mSchedulerMixer.setChannelCount(mOutStream->getChannelCount());
 
     callbackToDartInt32(sampleRateCallbackPort, mOutStream->getSampleRate());
