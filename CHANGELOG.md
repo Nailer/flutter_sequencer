@@ -63,3 +63,6 @@
 
 ## 0.4.4
 * Add ENABLE_TESTABILITY back to pod target xcconfig to fix iOS release mode
+
+## 0.4.5
+* fix android.buildFeatures.prefab=true in gradle.properties
