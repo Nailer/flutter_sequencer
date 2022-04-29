@@ -22,7 +22,7 @@ public:
     Mixer mSchedulerMixer;
 private:
     oboe::ManagedStream mOutStream;
-    std::unique_ptr<oboe::LatencyTuner> mLatencyTuner;
+    //std::unique_ptr<oboe::LatencyTuner> mLatencyTuner;
 
     static int constexpr kSampleRate = 44100;
 };

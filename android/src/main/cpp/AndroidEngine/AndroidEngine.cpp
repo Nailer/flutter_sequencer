@@ -3,10 +3,10 @@
 
 oboe::DataCallbackResult AndroidEngine::onAudioReady(oboe::AudioStream *oboeStream, void *audioData, int32_t numFrames) {
     float* outputBuffer = static_cast<float *>(audioData);
-    if (oboeStream->getAudioApi() == oboe::AudioApi::AAudio) {
-        if (!mLatencyTuner) mLatencyTuner = std::make_unique<oboe::LatencyTuner>(*mOutStream);
-        mLatencyTuner->tune();
-    }
+    // if (oboeStream->getAudioApi() == oboe::AudioApi::AAudio) {
+    //     if (!mLatencyTuner) mLatencyTuner = std::make_unique<oboe::LatencyTuner>(*mOutStream);
+    //     mLatencyTuner->tune();
+    // }
     mSchedulerMixer.renderAudio(outputBuffer, numFrames);
 
     return oboe::DataCallbackResult::Continue;
@@ -21,7 +21,7 @@ AndroidEngine::AndroidEngine(Dart_Port sampleRateCallbackPort) {
             ->setFormat(oboe::AudioFormat::Float)
             ->setCallback(this)
             ->openManagedStream(mOutStream);
-    //mOutStream->setBufferSizeInFrames(2048);
+    mOutStream->setBufferSizeInFrames(256);
     mSchedulerMixer.setChannelCount(mOutStream->getChannelCount());
     callbackToDartInt32(sampleRateCallbackPort, mOutStream->getSampleRate());
 };
