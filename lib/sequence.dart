@@ -29,7 +29,7 @@ class Sequence {
   /// Call this to remove this sequence and its tracks from the global sequencer
   /// engine.
   void destroy() {
-    _tracks.values.forEach((track) => deleteTrack(track));
+    _tracks.values.toList().forEach((track) => deleteTrack(track));
     globalState.unregisterSequence(this);
   }
 
