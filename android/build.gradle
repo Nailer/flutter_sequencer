@@ -44,10 +44,10 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
-    ndkVersion "22.1.7171670"
+    ndkVersion "25.1.8937393"
     externalNativeBuild {
         cmake {
-            version "3.18.1+"
+            version "3.27.0+"
             path "CMakeLists.txt"
         }
     }
